@@ -1,0 +1,23 @@
+{
+  "name": "svg-dataset-polyfill",
+  "version": "1.0.0",
+  "description": "Dataset polyfill for SVG elements",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "svg",
+    "dataset",
+    "attribute",
+    "polyfill"
+  ],
+  "author": "Adam Ashby <dev@adamashby.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "tslint": "^5.17.0",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {}
+}
