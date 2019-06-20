@@ -1,37 +1,19 @@
-interface Descriptor {
-  enumerable: boolean;
-  get: () => void;
-  attributes: Attribute[]
-}
-
 interface Attribute {
   name: string;
   value: string | number;
 }
 
-interface DatasetMap {
-  [key: string]: any | undefined;
-  enumerable: boolean;
-  get: () => void;
-  set: () => void;
-}
-
 const svgDatasetPolyfill = (function () {
 
-  if (!Object.getOwnPropertyDescriptor(SVGElement.prototype, 'dataset') || (!Object.getOwnPropertyDescriptor(SVGElement.prototype, 'dataset') as any).get) {
-    const descriptor: Descriptor = {
+  if (!Object.getOwnPropertyDescriptor(SVGElement.prototype, 'dataset') || (!Object.getOwnPropertyDescriptor(SVGElement.prototype, 'dataset') as PropertyDescriptor).get) {
+    const descriptor: PropertyDescriptor = {
       enumerable: true,
-      get: () => {},
-      attributes: []
+      get: undefined
     };
     //
     descriptor.get = function () {
       const element = this;
-      const map: DatasetMap = {
-        enumerable: true,
-        get: () => { },
-        set: () => { }
-      };
+      const map: PropertyDescriptorMap = {};
       const attributes: Attribute[] = this.attributes;
 
       function toUpperCase(n0: string) {
