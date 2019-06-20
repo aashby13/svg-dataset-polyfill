@@ -4,17 +4,12 @@ var svgDatasetPolyfill = (function () {
     if (!Object.getOwnPropertyDescriptor(SVGElement.prototype, 'dataset') || (!Object.getOwnPropertyDescriptor(SVGElement.prototype, 'dataset')).get) {
         var descriptor = {
             enumerable: true,
-            get: function () { },
-            attributes: []
+            get: undefined
         };
         //
         descriptor.get = function () {
             var element = this;
-            var map = {
-                enumerable: true,
-                get: function () { },
-                set: function () { }
-            };
+            var map = {};
             var attributes = this.attributes;
             function toUpperCase(n0) {
                 return n0.charAt(1).toUpperCase();

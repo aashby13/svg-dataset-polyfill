@@ -1,6 +1,6 @@
 {
   "name": "svg-dataset-polyfill",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Dataset polyfill for SVG elements",
   "main": "dist/index.js",
   "scripts": {
