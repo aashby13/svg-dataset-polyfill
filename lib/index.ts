@@ -16,10 +16,6 @@ const svgDatasetPolyfill = (function () {
       const map: PropertyDescriptorMap = {};
       const attributes: Attribute[] = this.attributes;
 
-      function toUpperCase(n0: string) {
-        return n0.charAt(1).toUpperCase();
-      }
-
       function getter(): string | number {
         return this.value;
       }
@@ -38,8 +34,8 @@ const svgDatasetPolyfill = (function () {
         if (attribute && attribute.name && (/^data-\w[\w\-]*$/).test(attribute.name)) {
           const name = attribute.name;
           const value = attribute.value;
-          // Change to camelCase
-          const propName = name.substr(5).replace(/-./g, toUpperCase);
+          // camelCase multi-dashed data attr: ie: data-example-one to exampleOne
+          const propName = name.substr(5).split('-').map((s, i) => i > 0 ? s.charAt(0).toUpperCase() + s.substr(1) : s).join('');
           Object.defineProperty(map, propName, {
             enumerable: this.enumerable,
             get: getter.bind({

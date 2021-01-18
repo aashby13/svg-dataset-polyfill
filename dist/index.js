@@ -11,9 +11,6 @@ var svgDatasetPolyfill = (function () {
             var element = this;
             var map = {};
             var attributes = this.attributes;
-            function toUpperCase(n0) {
-                return n0.charAt(1).toUpperCase();
-            }
             function getter() {
                 return this.value;
             }
@@ -30,8 +27,8 @@ var svgDatasetPolyfill = (function () {
                 if (attribute && attribute.name && (/^data-\w[\w\-]*$/).test(attribute.name)) {
                     var name_1 = attribute.name;
                     var value = attribute.value;
-                    // Change to camelCase
-                    var propName = name_1.substr(5).replace(/-./g, toUpperCase);
+                    // camelCase multi-dashed data attr: ie: data-example-one to exampleOne
+                    var propName = name_1.substr(5).split('-').map(function (s, i) { return i > 0 ? s.charAt(0).toUpperCase() + s.substr(1) : s; }).join('');
                     Object.defineProperty(map, propName, {
                         enumerable: this.enumerable,
                         get: getter.bind({
